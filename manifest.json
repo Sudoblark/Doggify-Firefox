@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+    "name": "Dogify",
+    "version": "1.0",
+    "description": "Adds a button that replaces all pictures on a webpage with random pictures of dogs.",
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "browser_action": {
+        "default_icon": {
+            "16": "icons/16-paw/png",
+            "32" : "icons/32-paw.png"
+        }
+    },
+
+    "icons": {
+      "48": "icons/32-paw.png"
+    }
+}
