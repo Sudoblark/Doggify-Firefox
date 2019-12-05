@@ -29,9 +29,8 @@ function ReplaceImages() {
     // Log for debugging
     console.log(`Found ${imageCollectionLength} images`)
     // Iterate through all images
-    for (var i = 0; i < imageCollectionLength; i++) {
-        console.log(`Iteration of image ${i}`)
-        // Call API then after call is finished
+    for(let image of imageCollection) {
+        console.log(image)
         ReturnDoggo().then(function(value) {
             console.log("ReturnDoggo then statement")
             // Find json of response
@@ -41,14 +40,11 @@ function ReplaceImages() {
                 console.log(value)
                 var lovelyDoggo = FindDoggo(value)
                 if (lovelyDoggo != "Unable to load doggos") {
-                    imageCollection[i].setAttribute("src", lovelyDoggo)
-                    console.log(`Tried to set src for image ${i} to ${lovelyDoggo}`)
+                    image.src = lovelyDoggo
                 } else {
-                    console.log(`Unable to query for lovely doggos for image ${i}`)
+                    console.log(`Unable to query for lovely doggos for image`)
                 }
-            })
-
-        }).catch(function(value) {
+            })}).catch(function(value) {
             console.log(value)
         })
     }
