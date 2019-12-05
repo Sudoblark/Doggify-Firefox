@@ -4,16 +4,12 @@
     "version": "1.0",
     "description": "Adds a button that replaces all pictures on a webpage with random pictures of dogs.",
 
-    "background": {
-        "scripts": ["background.js"]
-    },
-
-    "browser_action": {
-        "default_icon": {
-            "16": "icons/16-paw/png",
-            "32" : "icons/32-paw.png"
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["beautiful-doggos.js"]
         }
-    },
+      ],
 
     "icons": {
       "48": "icons/32-paw.png"
