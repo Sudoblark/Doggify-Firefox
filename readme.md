@@ -1,14 +1,32 @@
-# Dogify
-
-Master: TBC
-
-Development: TBC
+# Doggify
 
 This is just a silly little extension for Firefox that will replace all images on a web-page with that of random dogs.
 
+It does this by:
+- Querying the dog-ceo-api for doggos
+- Finding all images loaded on a page
+- Replacing all of their src with urls returned from the dog-ceo-api
+
+Future plans include:
+- Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos
+- Extension settings menu that allows you to specify what breed of doggo you want to see, as defined by https://dog.ceo/dog-api/breeds-list
+
 # Setup Checklist
 
-Simply add the extension in Firefox
+Simply add the extension in Firefox#
+
+# Compatibility
+- The iteration of images HTMLCollection is done via the following syntax:
+
+```js
+for (let image of imagecollection ) {
+    // stuff
+}
+```
+
+- HTMLCollection seems to be compatible on most modern browsers: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
+- Let seems to also be compatible on most modern browser, with IE needing to be at least version 11: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+
 
 # Acknowledgements
 Icon by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)
@@ -17,5 +35,3 @@ Uses the [dog-ceo-api](https://dog.ceo/dog-api/) by [ElliottLandsborough](https:
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
