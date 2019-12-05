@@ -1,19 +1,7 @@
 function ReturnDoggo() {
-    return new Promise(function(resolve, reject) {
-        console.log("setTimeout start")
-        url = "https://dog.ceo/api/breeds/image/random"
-        const Http = new XMLHttpRequest();
-        Http.open("GET", url)
-        Http.responseType = "json"
-        Http.send();
-        Http.onreadystatechange=(e)=>{
-            if (Http.readyState == 4) {
-                console.log("http state is 4")
-                console.log(Http)
-                return resolve (Http.response)
-            }
-        }
-    })
+    console.log("ReturnDoggo start")
+    var url = "https://dog.ceo/api/breeds/image/random"
+    return fetch(url)
 }
 
 function FindDoggo(jsonResponse) {
@@ -43,6 +31,8 @@ function ReplaceImages() {
             } else {
                 console.log(`Unable to query for lovely doggos`)
             }
+        }).catch(function(value) {
+            console.log(value)
         })
     }
 }

@@ -13,5 +13,9 @@
 
     "icons": {
       "48": "icons/32-paw.png"
-    }
+    },
+
+    "permissions" :[
+        "https://dog.ceo/api/breeds/image/random"
+    ]
 }
