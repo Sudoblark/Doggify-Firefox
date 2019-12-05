@@ -1,20 +1,23 @@
 {
     "manifest_version": 2,
-    "name": "Dogify",
+    "name": "Doggify",
     "version": "1.0",
-    "description": "Adds a button that replaces all pictures on a webpage with random pictures of dogs.",
-
+    "version_name":"1.0 Initial Extension",
+    "description": "A simple extension that automatically replaces loaded pictures on a website with doggos.",
+    "developer": {
+      "name":"Sudoblark",
+      "url":"https://sudoblark.com"
+    },
+    "incognito":"not_allowed",
     "content_scripts": [
         {
           "matches": ["<all_urls>"],
           "js": ["beautiful-doggos.js"]
         }
       ],
-
     "icons": {
       "48": "icons/32-paw.png"
     },
-
     "permissions" :[
         "https://dog.ceo/api/breeds/image/random"
     ]
