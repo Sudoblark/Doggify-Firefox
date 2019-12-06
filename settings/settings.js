@@ -55,14 +55,14 @@ window.onload = function() {
         var BreedList = EnumerateBreeds(JsonResponse)
         BreedList.then(function(value) {
             // Find select
-            var SelectBox = document.getElementById("DoggoBreeds")
-            console.log(SelectBox)
+            var SelectBox = document.getElementById("DoggoBreedsSelect")
             // Populate
             var index = 0
             value.forEach(element => {
                 SelectBox[index] = new Option(element.value, element.value)
                 index++
             });
+            console.log("Populated DoggoBreedsSelect")
         })
     })
 }

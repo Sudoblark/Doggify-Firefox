@@ -4,15 +4,26 @@
   <head>
     <meta charset="utf-8">
     <script src="settings.js"></script>
+    <link rel="stylesheet" href="settings.css">
   </head>
 
   <body>
     <div class="container-fluid" id="headerDiv">
         <h1>Doggify Settings</h1>
     </div>
-    <form>
-        <select id="DoggoBreeds"></select>
-    </form>
+    <br>
+    <div>
+        <form class="form-inline">
+            <label>Breed:</label>
+            <select id="DoggoBreedsSelect"></select>
+        </form>
+        <br>
+        <form class="form-inline">
+            <label>Continous Doggos:</label>
+            <input type="checkbox">
+        </form>
+    </div>
+
     
   </body>
 

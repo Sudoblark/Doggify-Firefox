@@ -1,0 +1,16 @@
+.form-inline {
+    display: inline;
+    flex-flow: row wrap;
+    align-items: center;
+
+}
+.form-inline label {
+    justify-content: flex-start;
+    text-align: left;
+    padding-right: 5%;
+    width: 20%;
+}
+.form-inline select {
+    width: 40%;
+
+}
