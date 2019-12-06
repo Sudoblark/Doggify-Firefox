@@ -19,6 +19,15 @@
       "48": "icons/32-paw.png"
     },
     "permissions" :[
-        "https://dog.ceo/api/breeds/image/random"
-    ]
+        "https://dog.ceo/api/*"
+    ],
+    "options_ui": {
+      "page":"settings/settings.html"
+    },
+    "applications": {
+      "gecko": {
+        "id":"bclark@sudoblark.com"
+      }
+    }
+
 }

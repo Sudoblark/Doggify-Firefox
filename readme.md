@@ -7,6 +7,7 @@ It does this by:
 - Finding all images loaded on a page
 - Replacing all of their src with urls returned from the dog-ceo-api
 
+## Overview
 Say for example someone is searching for some nasty cades on google images. Normally, they would see something similar to this:
 
 ![NastyCades](documentation/NastyCades.PNG)
@@ -15,14 +16,15 @@ But once this extension is installed all we see are lovely doggos!
 
 ![LovelyDoggos](documentation/LovelyDoggos.PNG)
 
+## Settings
+The settings page of the plugin allows you to:
+- Turn off/on continous replacement of images with doggos
+- Turn off/on the ability to right click and convert one image to a doggo
+- Choose what breed of doggo you want displayed
 
 # Future Plans
 - Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos
 - Extension settings menu that allows you to specify what breed of doggo you want to see, as defined by https://dog.ceo/dog-api/breeds-list
-
-
-
-
 
 # Setup Checklist
 
