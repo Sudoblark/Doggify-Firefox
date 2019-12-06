@@ -13,8 +13,19 @@ function EnumerateBreeds(JsonPromise) {
             console.log("Unable to load doggo breeds")
         } else {
             // On success...
-            for(let Breed of value.message) {
-                console.log(Breed) 
+            console.log(value.message)
+            // Enumerate keys
+            var BreedArray = value.message
+            for(var Breed in BreedArray) {
+                // For each key check if there are subkeys
+                if (BreedArray[Breed].length > 0) {
+                    for(var Index in BreedArray[Breed]) {
+                        SubBreed = BreedArray[Breed][Index]
+                        console.log(`*** BREED ${SubBreed} ${Breed} ***`)
+                    }
+                } else {
+                    console.log(`*** BREED ${Breed} ***`)
+                }
             }
 
         }

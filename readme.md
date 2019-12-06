@@ -19,7 +19,6 @@ But once this extension is installed all we see are lovely doggos!
 ## Settings
 The settings page of the plugin allows you to:
 - Turn off/on continous replacement of images with doggos
-- Turn off/on the ability to right click and convert one image to a doggo
 - Choose what breed of doggo you want displayed
 
 # Future Plans
