@@ -1,4 +1,4 @@
-//region Doggo population
+// #region Doggo population
 function ReturnBreeds() {
     // Log for debugging
     var url = "https://dog.ceo/api/breeds/list/all"
@@ -71,14 +71,43 @@ function PopulateBreeds() {
         })
     })
 }
+// #endregion Doggo population
+
+// #region Save Settings
+function saveOptions(e) {
+    e.preventDefault();
+    // Get selected breed
+    var BreedsSelection = document.getElementById("DoggoBreedsSelect")
+    var BreedSelected = BreedsSelection.options[BreedsSelection.selectedIndex].text
+    // Save setting
+    browser.storage.sync.set({
+      PreferredBreed: BreedSelected
+    });
+    console.log("***** Saving Settings *****")
+    console.log(`PreferredBreed: ${BreedSelected}`)
+  }
+// #endregion Save Settings
 
 
-//endregion Doggo population
 
 window.onload = function() {
     this.PopulateBreeds().then(function(value) {
+        // Log result of promises
         console.log(value)
+        // *** Bind event handlers *** //
+        // Save options event handler
+        document.getElementById("SaveSettings").addEventListener('click', function() {
+            var BreedsSelection = document.getElementById("DoggoBreedsSelect")
+            var BreedSelected = BreedsSelection.options[BreedsSelection.selectedIndex].text
+            // Save setting
+            browser.storage.sync.set({
+              PreferredBreed: BreedSelected
+            });
+            console.log("***** Saving Settings *****")
+            console.log(`PreferredBreed: ${BreedSelected}`)
+        })
     }).catch(function (error) {
+        // Log error
         console.log(error)
     })
 }

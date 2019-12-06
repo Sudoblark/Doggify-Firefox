@@ -19,7 +19,8 @@
       "48": "icons/32-paw.png"
     },
     "permissions" :[
-        "https://dog.ceo/api/*"
+        "https://dog.ceo/api/*",
+        "storage"
     ],
     "options_ui": {
       "page":"settings/settings.html"
