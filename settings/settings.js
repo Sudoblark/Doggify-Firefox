@@ -59,7 +59,9 @@ function PopulateBreeds() {
                 // Find select
                 var SelectBox = document.getElementById("DoggoBreedsSelect")
                 // Populate
-                var index = 0
+                var index = 1
+                // All option
+                SelectBox[0] = new Option("All doggos", "All doggos")
                 value.forEach(element => {
                     SelectBox[index] = new Option(element.value, element.value)
                     index++
