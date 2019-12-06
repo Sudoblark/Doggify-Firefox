@@ -1,3 +1,4 @@
+//region Doggo population
 function ReturnBreeds() {
     // Log for debugging
     var url = "https://dog.ceo/api/breeds/list/all"
@@ -47,23 +48,38 @@ function PushBreedToList(List, DoggoArray, DoggoBreed) {
     List.push(SingleBreed)
 }
 
-window.onload = function() {
-    this.ReturnBreeds().then(function(value) {
-        // Find json of response
-        var JsonResponse = value.json()
-        // Enumerate breeds from promise
-        var BreedList = EnumerateBreeds(JsonResponse)
-        BreedList.then(function(value) {
-            // Find select
-            var SelectBox = document.getElementById("DoggoBreedsSelect")
-            // Populate
-            var index = 0
-            value.forEach(element => {
-                SelectBox[index] = new Option(element.value, element.value)
-                index++
-            });
-            console.log("Populated DoggoBreedsSelect")
+function PopulateBreeds() {
+    return new Promise(function(resolve, reject) {
+        this.ReturnBreeds().then(function(value) {
+            // Find json of response
+            var JsonResponse = value.json()
+            // Enumerate breeds from promise
+            var BreedList = EnumerateBreeds(JsonResponse)
+            BreedList.then(function(value) {
+                // Find select
+                var SelectBox = document.getElementById("DoggoBreedsSelect")
+                // Populate
+                var index = 0
+                value.forEach(element => {
+                    SelectBox[index] = new Option(element.value, element.value)
+                    index++
+                })
+                return resolve("Populate DoggoBreedsSelect")
+            }).catch(function(error) {
+                return reject(`Unable to populateDoggoBreedsSelect: ${error}`)
+            })
         })
+    })
+}
+
+
+//endregion Doggo population
+
+window.onload = function() {
+    this.PopulateBreeds().then(function(value) {
+        console.log(value)
+    }).catch(function (error) {
+        console.log(error)
     })
 }
 
