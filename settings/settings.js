@@ -93,9 +93,16 @@ function saveOptions(e) {
 function restoreOptions() {
     // Set current choice
     function setCurrentChoice(result) {
+        console.log("***** Getting Settings *****")
         // Get preference
-        var PreferredBreedIndex = result.PreferredBreed || 0
-        console.log(PreferredBreedIndex)
+        var PreferredBreedIndex = result.PreferredBreed
+        console.log(`PreferredBreed: ${PreferredBreedIndex}`)
+        // Get index
+        console.log("***** Setting Settings *****")
+        var Collection = document.getElementById("DoggoBreedsSelect")
+        var PreferredIndex = ReturnIndex(Collection, PreferredBreedIndex)
+        Collection.selectedIndex = PreferredIndex
+        console.log(`Index: ${PreferredIndex}`)
     }
     function onError(error) {
       console.log(`Error: ${error}`);
@@ -103,6 +110,16 @@ function restoreOptions() {
     var getting = browser.storage.sync.get("PreferredBreed");
     getting.then(setCurrentChoice, onError);
   }
+
+function ReturnIndex(HTMLCollection, ExpectedValue) {
+    var CollectionLength = HTMLCollection.length
+    for(var i = 0; i < CollectionLength -1; i++) {
+        if (HTMLCollection[i].value == ExpectedValue) {
+            return i
+        }
+    }
+    return 0
+}
 
 // #endregion Save Settings
 
