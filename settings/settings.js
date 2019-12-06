@@ -83,9 +83,27 @@ function saveOptions(e) {
     browser.storage.sync.set({
       PreferredBreed: BreedSelected
     });
+    // Output to console
     console.log("***** Saving Settings *****")
     console.log(`PreferredBreed: ${BreedSelected}`)
+    console.log("***** Settings Saved  *****")
+}
+
+
+function restoreOptions() {
+    // Set current choice
+    function setCurrentChoice(result) {
+        // Get preference
+        var PreferredBreedIndex = result.PreferredBreed || 0
+        console.log(PreferredBreedIndex)
+    }
+    function onError(error) {
+      console.log(`Error: ${error}`);
+    }
+    var getting = browser.storage.sync.get("PreferredBreed");
+    getting.then(setCurrentChoice, onError);
   }
+
 // #endregion Save Settings
 
 
@@ -96,16 +114,10 @@ window.onload = function() {
         console.log(value)
         // *** Bind event handlers *** //
         // Save options event handler
-        document.getElementById("SaveSettings").addEventListener('click', function() {
-            var BreedsSelection = document.getElementById("DoggoBreedsSelect")
-            var BreedSelected = BreedsSelection.options[BreedsSelection.selectedIndex].text
-            // Save setting
-            browser.storage.sync.set({
-              PreferredBreed: BreedSelected
-            });
-            console.log("***** Saving Settings *****")
-            console.log(`PreferredBreed: ${BreedSelected}`)
-        })
+        document.getElementById("SaveSettings").addEventListener('click', saveOptions)
+        // *** End event handlers *** //
+        // Restore options if possible
+        restoreOptions()
     }).catch(function (error) {
         // Log error
         console.log(error)
