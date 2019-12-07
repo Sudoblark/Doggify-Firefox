@@ -14,3 +14,12 @@
     width: 40%;
 
 }
+
+#SaveSettings {
+    width: 10%;
+    text-align: center;
+}
+
+#DoggoSettings {
+    padding-bottom: 10%;
+}
