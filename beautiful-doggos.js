@@ -1,43 +1,59 @@
-function ReturnDoggo() {
-    // Log for debugging
-    console.log("ReturnDoggo start")
-    var url = "https://dog.ceo/api/breeds/image/random"
+function GetDoggoPreference() {
+    return new Promise(function(resolve,reject){
+        var getting = browser.storage.sync.get("PreferredBreed");
+        getting.then(function(result) {
+            var PreferredBreedIndex = result.PreferredBreed
+            console.log(`PreferredBreed: ${PreferredBreedIndex}`)
+            return resolve(PreferredBreedIndex)
+        })
+    })
+}
+
+function ReturnDoggoURL(result) {
+    return new Promise(function(resolve,reject){
+        // if no result is returned, or the preference is all doggos
+        if ((result == null) || (result == "All doggos")) {
+            // return all doggos
+            var url = "https://dog.ceo/api/breeds/image/random"
+        } else {
+            // otherwise construct the appropriate string and then return this
+            var url = "https://dog.ceo/api/breed/" + result + "/images/random"
+        }
+        console.log(`Doggo URL: ${url}`)
+        return resolve(url)
+    })
+}
+
+function ReturnDoggo(url) {
     // Return promise of fetch
     return fetch(url)
 }
 
 function FindDoggo(jsonResponse) {
     // Log for debugging
-    console.log("FindDoggo start")
     // If not OK status then return and log error
     if (jsonResponse.status != "success") {
-        console.log(jsonResponse)
         return "Unable to load doggos"
     } else { // If OK then try to return message value which will
         // be a url of a doggo from the api
         var FindDoggoReturn = jsonResponse['message']
-        console.log(`Find Doggo Return ${FindDoggoReturn}`)
         return FindDoggoReturn
     }
 }
 
-function ReplaceImages() {
+function ReplaceImages(DoggoUrl) {
     // find all images on page
     var imageCollection = document.images
-    // get length
     var imageCollectionLength = imageCollection.length
-    // Log for debugging
-    console.log(`Found ${imageCollectionLength} images`)
+    var index = 1
     // Iterate through all images
     for(let image of imageCollection) {
-        console.log(image)
-        ReturnDoggo().then(function(value) {
-            console.log("ReturnDoggo then statement")
+        console.log(`Iterating image ${index}/${imageCollectionLength}`)
+        ReturnDoggo(DoggoUrl).then(function(value) {
             // Find json of response
             var JsonResponse = value.json()
             // json is actually promise, so to get value need to use then
             JsonResponse.then(function(value) {
-                console.log(value)
                 var lovelyDoggo = FindDoggo(value)
                 if (lovelyDoggo != "Unable to load doggos") {
                     image.src = lovelyDoggo
@@ -47,7 +63,10 @@ function ReplaceImages() {
             })}).catch(function(value) {
             console.log(value)
         })
+        // Increment index
+        index++ 
     }
 }
 
-ReplaceImages();
+// First populate the url for doggos then replace all images
+GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
