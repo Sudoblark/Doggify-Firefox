@@ -35,7 +35,7 @@ The settings page of the plugin allows you to:
 
 - Select the "Options" tab to see the "Settings" menu
 
-![Doggify-Options](documentation/settings/Doggify-Options.PNG)
+![Doggify-Options](documentation/settings/Doggify-Options.png)
 
 - Choose your preferred doggo breed then select "Save"
 
