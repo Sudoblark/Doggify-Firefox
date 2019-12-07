@@ -24,7 +24,7 @@ But once this extension is installed all we see are lovely doggos!
 The settings page of the plugin allows you to:
 - Choose what breed of doggo you want displayed
 
-## Choose breed of doggo
+### Choose breed of doggo
 - First access the Doggify extension in Firefox by navigating "addons > extensions"
 
 ![Firefox-Addon](documentation/settings/Firefox-Addon.PNG)
@@ -45,16 +45,16 @@ The settings page of the plugin allows you to:
 
 ![Doggify-PreferredBreed](documentation/settings/Doggify-PreferredBreed.PNG)
 
-# Future Plans
+## Future Plans
 - Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos
 - Add functionality to allow user to right click and image and "doggify" it
 - Expanded settings menu to allow you to turn off/on automatic replacement and option to doggify a single image
 
-# Setup Checklist
+## Setup Checklist
 
 Simply add the extension in Firefox: https://addons.mozilla.org/en-GB/firefox/addon/doggify/
 
-# Development/Debugging
+## Development/Debugging
 - Download repo
 - Open the [about:debugging](https://developer.mozilla.org/en-US/docs/Tools/about:debugging) page in Firefox
 - Navigate to the repo and select the ```manifest.json``` file
@@ -65,7 +65,7 @@ Note: Adding an extension via the method above only adds it for that session of 
 
 Any changes you make to existing files should update automatically on a refresh, although sometimes you'll need to close and open Firefox again.
 
-# Compatibility
+## Compatibility
 - The iteration of images HTMLCollection is done via the following syntax:
 
 ```js
@@ -78,7 +78,7 @@ for (let image of imagecollection ) {
 - Let seems to also be compatible on most modern browser, with IE needing to be at least version 11: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 
 
-# Acknowledgements
+## Acknowledgements
 Icon by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)
 
 Uses the [dog-ceo-api](https://dog.ceo/dog-api/) by [ElliottLandsborough](https://github.com/ElliottLandsborough) with the source code in this [repo](https://github.com/ElliottLandsborough/dog-ceo-api)
