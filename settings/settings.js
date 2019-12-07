@@ -38,7 +38,7 @@ function PushBreedToList(List, DoggoArray, DoggoBreed) {
     if (DoggoArray[DoggoBreed].length > 0) {
         for(var Index in DoggoArray[DoggoBreed]) {
             SubBreed = DoggoArray[DoggoBreed][Index]
-            FinalBreed = `${SubBreed} ${DoggoBreed}`
+            FinalBreed = `${DoggoBreed}/${SubBreed}`
             SingleBreed["value"] = FinalBreed
             }
     } else {
