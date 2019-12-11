@@ -8,7 +8,7 @@ This is an extension for firefox that will let you:
 - Change your preference for what breed of doggo is displayed via an addon settings menu
 - Right click an image and doggify it
 
-You can turn off the automatic replacment of images in the extension's settings menu.
+You can turn off the automatic replacement of images in the extension's settings menu.
 
 Check it out [here](https://addons.mozilla.org/en-GB/firefox/addon/doggify/) on Firefox!
 
