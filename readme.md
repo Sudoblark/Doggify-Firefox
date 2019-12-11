@@ -1,4 +1,7 @@
 # Doggify
+[![Github latest release](https://img.shields.io/badge/Github%20Latest%20Release-1.1.0-green.svg)](https://github.com/Sudoblark/Doggify-Firefox/releases)
+
+[![Firefox stable release](https://img.shields.io/badge/Firefox%20Stable%20Release-1.1.0-green.svg)](https://addons.mozilla.org/en-GB/firefox/addon/doggify/)
 
 This is an extension for firefox that will let you:
 - Automatically replace all images on a webpage with doggos
