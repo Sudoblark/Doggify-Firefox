@@ -66,14 +66,45 @@ function ReplaceImages(DoggoUrl) {
     // Iterate through all images
     for(let image of imageCollection) {
         console.log(`Iterating image ${index}/${imageCollectionLength}`)
-        ReplaceImageURL(DoggoUrl, image)
+        GetDoggoPreference().then(ReturnDoggoURL).then(function(url) {
+            ReplaceImageURL(url, image)})
         // Increment index
         index++ 
     }
 }
 
-// First populate the url for doggos then replace all images
-GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
+function GetContinousDoggoSetting() {
+    // function to query browser storage for continous doggo setting
+    return new Promise(function(resolve,reject){
+        var getting = browser.storage.sync.get("ContinousDoggos");
+        getting.then(function(result) {
+            var ContinousDoggosBool = result.ContinousDoggos
+            console.log(`ContinousDoggos: ${ContinousDoggosBool}`)
+            return resolve(ContinousDoggosBool)
+        }).catch(function(error) {
+            console.log(`Error: ${error}`)
+            return resolve (false)
+        })
+    })
+}
+
+GetContinousDoggoSetting().then(function(value) {
+    var ContinousDoggos = false
+    if ((value != null) && (value != false)) {
+        ContinousDoggos = true
+    }
+
+    if (ContinousDoggos != false)  {
+        console.log("continousDoggos set to TRUE")
+        // First populate the url for doggos then replace all images
+        GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
+    } else {
+        // Otherwise do not
+        console.log("continousDoggos set to FALSE")
+    }
+
+})
+
 
 // Add listener for info passed from doggify contextmenu click
 browser.runtime.onMessage.addListener(request => {

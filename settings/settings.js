@@ -81,36 +81,48 @@ function saveOptions(e) {
     // Get selected breed
     var BreedsSelection = document.getElementById("DoggoBreedsSelect")
     var BreedSelected = BreedsSelection.options[BreedsSelection.selectedIndex].text
+    var ContinousDoggosSelection = document.getElementById("continousDoggos").checked
     // Save setting
     browser.storage.sync.set({
-      PreferredBreed: BreedSelected
+      PreferredBreed: BreedSelected,
+      ContinousDoggos: ContinousDoggosSelection
     });
     // Output to console
     console.log("***** Saving Settings *****")
     console.log(`PreferredBreed: ${BreedSelected}`)
+    console.log(`ContinousDoggos: ${ContinousDoggosSelection}`)
     console.log("***** Settings Saved  *****")
 }
 
 
 function restoreOptions() {
     // Set current choice
-    function setCurrentChoice(result) {
-        console.log("***** Getting Settings *****")
+    function setCurrentChoicePreferredBreed(result) {
         // Get preference
         var PreferredBreedIndex = result.PreferredBreed
         console.log(`PreferredBreed: ${PreferredBreedIndex}`)
         // Get index
-        console.log("***** Setting Settings *****")
         var Collection = document.getElementById("DoggoBreedsSelect")
         var PreferredIndex = ReturnIndex(Collection, PreferredBreedIndex)
         Collection.selectedIndex = PreferredIndex
         console.log(`Index: ${PreferredIndex}`)
     }
+
+    function setCurrentChoiceContinousDoggos(result) {
+        // Get preference
+        var ContinousDoggosSelection = result.ContinousDoggos
+        console.log(`ContinuousDoggos: ${ContinousDoggosSelection}`)
+        // Set checkbox
+        document.getElementById("continousDoggos").checked = ContinousDoggosSelection
+    }
     function onError(error) {
       console.log(`Error: ${error}`);
     }
-    var getting = browser.storage.sync.get("PreferredBreed");
-    getting.then(setCurrentChoice, onError);
+    var gettingBreed = browser.storage.sync.get("PreferredBreed");
+    gettingBreed.then(setCurrentChoicePreferredBreed, onError);
+
+    var gettingContinous = browser.storage.sync.get("ContinousDoggos");
+    gettingContinous.then(setCurrentChoiceContinousDoggos, onError);
   }
 
 function ReturnIndex(HTMLCollection, ExpectedValue) {

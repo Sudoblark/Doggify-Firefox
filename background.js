@@ -30,5 +30,5 @@ browser.menus.onClicked.addListener(function (info, tab) {
     tab.id,
     {imageToChangeURL: `${info.srcUrl}`}
   )
-  console.log(`Sent message to tab ${tab.id} to Doggify ${info.srcUrl}`)
+  console.log(`Sent message to tab ${tab.id} to Doggify image`)
 })
