@@ -85,20 +85,21 @@ browser.runtime.onMessage.addListener(request => {
         return "Invalid url passed from background script"
     } else {
         // If proper url then find image based on this
-        console.log(`Valid URL passed: ${requestURL}`)
         var imageCollection = document.images
+        var Success = false
         for(let image of imageCollection) {
-            console.log(image)
             // If match is found
             if (image.src == requestURL) {
+                console.log(`Replaced src of image using url ${requestURL}`)
+                Success = true
                 // Replace src and return success
                 GetDoggoPreference().then(ReturnDoggoURL).then(function(url) {
                     ReplaceImageURL(url, image)})
-                return `Replaced src of image using url ${requestURL}`
-                
+                break  
             }
         }
-        console.error("No match found")
-        return "No match found for passed url"
+        if (Success != true) {
+            console.error("No match found for Doggify target")
+        }
     }
 })

@@ -18,21 +18,17 @@ Create all the context menu items.
 */
 
 browser.menus.create({
-  id: "remove-me",
-  title: "remove me!",
-  contexts: ["all"]
+  id: "doggify-me",
+  title: "Doggify me!",
+  contexts: ["image","video"]
 }, onCreated);
 
 browser.menus.onClicked.addListener(function (info, tab) {
-  console.log(info)
   // Sent single message to current tab with the source url for
   // image to change
   browser.tabs.sendMessage(
     tab.id,
     {imageToChangeURL: `${info.srcUrl}`}
-  ).then(response => {
-    console.log(`Doggify response from content: ${response.response}`)
-  }).catch(error => {
-    console.log(`Error sending doggify url: ${error}`)
-  })
+  )
+  console.log(`Sent message to tab ${tab.id} to Doggify ${info.srcUrl}`)
 })
