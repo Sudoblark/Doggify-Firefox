@@ -12,6 +12,8 @@ You can turn off the automatic replacment of images in the extension's settings 
 
 Check it out [here](https://addons.mozilla.org/en-GB/firefox/addon/doggify/) on Firefox!
 
+Click [here](https://sudoblark.github.io/Doggify-Firefox/) for the Github page!
+
 ## Acknowledgements
 Icon by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)
 
