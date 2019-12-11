@@ -10,6 +10,8 @@ This is an extension for firefox that will let you:
 
 You can turn off the automatic replacment of images in the extension's settings menu.
 
+Check it out [here](https://addons.mozilla.org/en-GB/firefox/addon/doggify/) on Firefox!
+
 ## Acknowledgements
 Icon by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)
 
