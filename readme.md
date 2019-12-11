@@ -7,15 +7,6 @@ This is an extension for firefox that will let you:
 
 You can turn off the automatic replacment of images in the extension's settings menu.
 
-It does this by:
-- Querying the dog-ceo-api for doggos
-- Finding all images loaded on a page
-- Replacing all of their src with urls returned from the dog-ceo-api
-- Extending the Firefox context menu and adding message/listener pairs to background and content scripts
-- Implementing a settings menu using Firefox's APIs for persistent storage
-
-Note: The query to dog-ceo-api changes depending on your preferred breed as set in the addon settings menu
-
 ## Acknowledgements
 Icon by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](www.flaticon.com)
 
@@ -41,7 +32,7 @@ This extension extends the Firefox context menu to include a "Doggify me!" optio
 
 If you select this option then the image in question will be changed to a doggo.
 
-![Doggify-me-post](documentation/doggify/Doggify-me-post.png)
+![Doggify-me-post](documentation/doggify/Doggify-me-post.PNG)
 
 
 ## Settings
@@ -49,11 +40,7 @@ This can be accessed in firefox by going to "options > addons > extensions > dog
 
 ![Doggify-me-post](documentation/settings/Settings.PNG)
 
-The settings page of the plugin allows you to:
-- Choose what breed of doggo you want displayed
-- Enable or disable continous doggo replacement
-
-Remember to "save" when you make changes to the settings menu.
+Remember to "save" when you make changes to the settings menu!
 
 ## Future Plans
 - Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos
