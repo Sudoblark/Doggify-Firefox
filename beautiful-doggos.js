@@ -72,8 +72,50 @@ function ReplaceImages(DoggoUrl) {
     }
 }
 
-// First populate the url for doggos then replace all images
-GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
+function GetContinousDoggoSetting() {
+    // function to query browser storage for continous doggo setting
+    return new Promise(function(resolve,reject){
+        var getting = browser.storage.sync.get("continousDoggos");
+        getting.then(function(result) {
+            var PreferredBreedIndex = result.PreferredBreed
+            console.log(`continousDoggos: ${PreferredBreedIndex}`)
+            return resolve(PreferredBreedIndex)
+        })
+    })
+}
+
+const continousDoggos = false
+const globalDoggoPromise = ""
+
+async function PopulateSettings() {
+    // Queue promises
+    const GetDoggoSetting = GetContinousDoggoSetting()
+    const DoggoURL = GetDoggoPreference()
+    // Await
+    await GetDoggoSetting
+    await DoggoURL
+    // Populate continous doggos globally
+    var DoggoResults = GetDoggoSetting.json()
+    if ((DoggoResults != null) && (DoggoResults != false)) {
+        continousDoggos = true
+    }
+    // Populate doggo promise globally
+    const ReturnDoggoURL = ReturnDoggoURL(GetDoggoSetting)
+    ReturnDoggo.then(promise => {globalDoggoPromise = promise})
+}
+
+PopulateSettings().then(function() {
+    // If user has explicitly enabled continous doggos then change all images
+    // to doggos
+    if (continousDoggos != false)  {
+        console.log("continousDoggos set to TRUE")
+        // Replace all doggo images
+        ReplaceImages(globalDoggoPromise)
+        } else {
+            console.log("continousDoggos set to FALSE")
+        }
+})
+
 
 // Add listener for info passed from doggify contextmenu click
 browser.runtime.onMessage.addListener(request => {

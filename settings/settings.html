@@ -12,13 +12,26 @@
         <h1>Doggify Settings</h1>
     </div>
     <br>
-    <div id="DoggoSettings">
-        <form class="form-inline">
-            <label>Breed:</label>
-            <select id="DoggoBreedsSelect"></select>
-        </form>
-    </div>
-    <br>
+    <table style="width:100%">
+      <tr>
+        <td>Breed:</td>
+        <td><select id="DoggoBreedsSelect"></select></td>
+      </tr>
+      <tr>
+        <td>Continous Doggos</td>
+        <td><input type="checkbox" name="continousDoggos"></td>
+      </tr>
+    </table>
+    <br><br><br>
+    <p>
+      Breed allows you to limit what dog pictures are used to a specific breed. Selecting "All doggos" will allow the extension to select a random dog picture from any breed.
+      <br><br>
+      If "Continous Doggos" is ticked then the extension will automatically replace all images on a web page with dogs.
+      <br><br>
+      The option to right click an image and select "Doggify me!", which will replace the image with a random dog, is always enabled.
+      <hr>
+
+    </p>
     <button id="SaveSettings">Save</button>
 
     
