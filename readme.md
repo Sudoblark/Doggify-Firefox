@@ -5,13 +5,14 @@ This is an extension for firefox that will let you:
 - Change your preference for what breed of doggo is displayed via an addon settings menu
 - Right click an image and doggify it
 
-~~All of these options are available to be disabled/enabled in the extension's settings menu~~
+You can turn off the automatic replacment of images in the extension's settings menu.
 
 It does this by:
 - Querying the dog-ceo-api for doggos
 - Finding all images loaded on a page
 - Replacing all of their src with urls returned from the dog-ceo-api
 - Extending the Firefox context menu and adding message/listener pairs to background and content scripts
+- Implementing a settings menu using Firefox's APIs for persistent storage
 
 Note: The query to dog-ceo-api changes depending on your preferred breed as set in the addon settings menu
 
@@ -22,8 +23,8 @@ Uses the [dog-ceo-api](https://dog.ceo/dog-api/) by [ElliottLandsborough](https:
 
 
 ## Overview
-### Continous Doggo Replacement
-~~When enabled this option will automatically replace images on a webpage with dogs.~~
+### Continous Doggos
+When enabled the plugin will automatically replace all images on a webpage with dogs.
 
 Say for example someone is searching for some nasty cades on google images. Normally, they would see something similar to this:
 
@@ -34,22 +35,28 @@ But once this extension is installed all we see are lovely doggos!
 ![LovelyDoggos](documentation/overview/LovelyDoggos.PNG)
 
 ### Doggify an image
-~~When enabled this option will extend Firefox's context menu to allow you to doggify an image.~~
+This extension extends the Firefox context menu to include a "Doggify me!" option whenever clicking on an image:
+
+![Doggify-me-pre](documentation/doggify/Doggify-me-pre.png)
+
+If you select this option then the image in question will be changed to a doggo.
+
+![Doggify-me-post](documentation/doggify/Doggify-me-post.png)
+
 
 ## Settings
 This can be accessed in firefox by going to "options > addons > extensions > doggify > options".
 
+![Doggify-me-post](documentation/settings/Settings.PNG)
+
 The settings page of the plugin allows you to:
 - Choose what breed of doggo you want displayed
 - Enable or disable continous doggo replacement
-- Enable or disable the option to doggify an image
 
 Remember to "save" when you make changes to the settings menu.
 
 ## Future Plans
 - Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos
-- Add functionality to allow user to right click and image and "doggify" it
-- Expanded settings menu to allow you to turn off/on automatic replacement and option to doggify a single image
 
 ## Setup Checklist
 
