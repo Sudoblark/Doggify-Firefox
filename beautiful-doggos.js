@@ -66,7 +66,8 @@ function ReplaceImages(DoggoUrl) {
     // Iterate through all images
     for(let image of imageCollection) {
         console.log(`Iterating image ${index}/${imageCollectionLength}`)
-        ReplaceImageURL(DoggoUrl, image)
+        GetDoggoPreference().then(ReturnDoggoURL).then(function(url) {
+            ReplaceImageURL(url, image)})
         // Increment index
         index++ 
     }
@@ -75,45 +76,33 @@ function ReplaceImages(DoggoUrl) {
 function GetContinousDoggoSetting() {
     // function to query browser storage for continous doggo setting
     return new Promise(function(resolve,reject){
-        var getting = browser.storage.sync.get("continousDoggos");
+        var getting = browser.storage.sync.get("ContinousDoggos");
         getting.then(function(result) {
-            var PreferredBreedIndex = result.PreferredBreed
-            console.log(`continousDoggos: ${PreferredBreedIndex}`)
-            return resolve(PreferredBreedIndex)
+            var ContinousDoggosBool = result.ContinousDoggos
+            console.log(`ContinousDoggos: ${ContinousDoggosBool}`)
+            return resolve(ContinousDoggosBool)
+        }).catch(function(error) {
+            console.log(`Error: ${error}`)
+            return resolve (false)
         })
     })
 }
 
-const continousDoggos = false
-const globalDoggoPromise = ""
-
-async function PopulateSettings() {
-    // Queue promises
-    const GetDoggoSetting = GetContinousDoggoSetting()
-    const DoggoURL = GetDoggoPreference()
-    // Await
-    await GetDoggoSetting
-    await DoggoURL
-    // Populate continous doggos globally
-    var DoggoResults = GetDoggoSetting.json()
-    if ((DoggoResults != null) && (DoggoResults != false)) {
-        continousDoggos = true
+GetContinousDoggoSetting().then(function(value) {
+    var ContinousDoggos = false
+    if ((value != null) && (value != false)) {
+        ContinousDoggos = true
     }
-    // Populate doggo promise globally
-    const ReturnDoggoURL = ReturnDoggoURL(GetDoggoSetting)
-    ReturnDoggo.then(promise => {globalDoggoPromise = promise})
-}
 
-PopulateSettings().then(function() {
-    // If user has explicitly enabled continous doggos then change all images
-    // to doggos
-    if (continousDoggos != false)  {
+    if (ContinousDoggos != false)  {
         console.log("continousDoggos set to TRUE")
-        // Replace all doggo images
-        ReplaceImages(globalDoggoPromise)
-        } else {
-            console.log("continousDoggos set to FALSE")
-        }
+        // First populate the url for doggos then replace all images
+        GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
+    } else {
+        // Otherwise do not
+        console.log("continousDoggos set to FALSE")
+    }
+
 })
 
 
