@@ -41,6 +41,23 @@ function FindDoggo(jsonResponse) {
     }
 }
 
+function ReplaceImageURL(BaseURL, image) {
+    ReturnDoggo(BaseURL).then(function(value) {
+        // Find json of response
+        var JsonResponse = value.json()
+        // json is actually promise, so to get value need to use then
+        JsonResponse.then(function(value) {
+            var lovelyDoggo = FindDoggo(value)
+            if (lovelyDoggo != "Unable to load doggos") {
+                image.src = lovelyDoggo
+            } else {
+                console.log(`Unable to query for lovely doggos for image`)
+            }
+        })}).catch(function(value) {
+        console.log(value)
+    })
+}
+
 function ReplaceImages(DoggoUrl) {
     // find all images on page
     var imageCollection = document.images
@@ -49,20 +66,7 @@ function ReplaceImages(DoggoUrl) {
     // Iterate through all images
     for(let image of imageCollection) {
         console.log(`Iterating image ${index}/${imageCollectionLength}`)
-        ReturnDoggo(DoggoUrl).then(function(value) {
-            // Find json of response
-            var JsonResponse = value.json()
-            // json is actually promise, so to get value need to use then
-            JsonResponse.then(function(value) {
-                var lovelyDoggo = FindDoggo(value)
-                if (lovelyDoggo != "Unable to load doggos") {
-                    image.src = lovelyDoggo
-                } else {
-                    console.log(`Unable to query for lovely doggos for image`)
-                }
-            })}).catch(function(value) {
-            console.log(value)
-        })
+        ReplaceImageURL(DoggoUrl, image)
         // Increment index
         index++ 
     }
@@ -70,3 +74,31 @@ function ReplaceImages(DoggoUrl) {
 
 // First populate the url for doggos then replace all images
 GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
+
+// Add listener for info passed from doggify contextmenu click
+browser.runtime.onMessage.addListener(request => {
+    // Check if valid URL is passed back
+    var requestURL = request.imageToChangeURL
+    if (requestURL == null || requestURL.length == 0) {
+        // If not raise error
+        console.error("Invalid url passed from background script")
+        return "Invalid url passed from background script"
+    } else {
+        // If proper url then find image based on this
+        console.log(`Valid URL passed: ${requestURL}`)
+        var imageCollection = document.images
+        for(let image of imageCollection) {
+            console.log(image)
+            // If match is found
+            if (image.src == requestURL) {
+                // Replace src and return success
+                GetDoggoPreference().then(ReturnDoggoURL).then(function(url) {
+                    ReplaceImageURL(url, image)})
+                return `Replaced src of image using url ${requestURL}`
+                
+            }
+        }
+        console.error("No match found")
+        return "No match found for passed url"
+    }
+})
