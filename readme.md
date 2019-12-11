@@ -3,11 +3,15 @@
 This is an extension for firefox that will let you:
 - Automatically replace all images on a webpage with doggos
 - Change your preference for what breed of doggo is displayed via an addon settings menu
+- Right click an image and doggify it
+
+~~All of these options are available to be disabled/enabled in the extension's settings menu~~
 
 It does this by:
 - Querying the dog-ceo-api for doggos
 - Finding all images loaded on a page
 - Replacing all of their src with urls returned from the dog-ceo-api
+- Extending the Firefox context menu and adding message/listener pairs to background and content scripts
 
 Note: The query to dog-ceo-api changes depending on your preferred breed as set in the addon settings menu
 
@@ -18,6 +22,9 @@ Uses the [dog-ceo-api](https://dog.ceo/dog-api/) by [ElliottLandsborough](https:
 
 
 ## Overview
+### Continous Doggo Replacement
+~~When enabled this option will automatically replace images on a webpage with dogs.~~
+
 Say for example someone is searching for some nasty cades on google images. Normally, they would see something similar to this:
 
 ![NastyCades](documentation/overview/NastyCades.PNG)
@@ -26,30 +33,18 @@ But once this extension is installed all we see are lovely doggos!
 
 ![LovelyDoggos](documentation/overview/LovelyDoggos.PNG)
 
+### Doggify an image
+~~When enabled this option will extend Firefox's context menu to allow you to doggify an image.~~
+
 ## Settings
+This can be accessed in firefox by going to "options > addons > extensions > doggify > options".
+
 The settings page of the plugin allows you to:
 - Choose what breed of doggo you want displayed
+- Enable or disable continous doggo replacement
+- Enable or disable the option to doggify an image
 
-### Choose breed of doggo
-- First access the Doggify extension in Firefox by navigating "addons > extensions"
-
-![Firefox-Addon](documentation/settings/Firefox-Addon.PNG)
-
-- You will then see the "Doggify" extension:
-
-![Doggify-Extension](documentation/settings/Doggify-Extension.PNG)
-
-- Select the "Options" tab to see the "Settings" menu
-
-![Doggify-Options](documentation/settings/Doggify-Options.png)
-
-- Choose your preferred doggo breed then select "Save"
-
-![Doggify-Settings](documentation/settings/Doggify-Settings.PNG)
-
-- Refresh any pages and you'll only see doggos from your preferred breed:
-
-![Doggify-PreferredBreed](documentation/settings/Doggify-PreferredBreed.PNG)
+Remember to "save" when you make changes to the settings menu.
 
 ## Future Plans
 - Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos

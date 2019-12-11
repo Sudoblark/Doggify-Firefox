@@ -20,7 +20,9 @@
     },
     "permissions" :[
         "https://dog.ceo/api/*",
-        "storage"
+        "storage",
+        "menus",
+        "activeTab"
     ],
     "options_ui": {
       "page":"settings/settings.html"
@@ -29,6 +31,9 @@
       "gecko": {
         "id":"{78af7959-df30-4a4a-bb94-399d7e32abae}"
       }
+    },
+    "background": {
+      "scripts" : ["background.js"]
     }
 
 }
