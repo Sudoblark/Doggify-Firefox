@@ -24,7 +24,7 @@ Uses the [dog-ceo-api](https://dog.ceo/dog-api/) by [ElliottLandsborough](https:
 ### Continous Doggos
 When enabled the plugin will automatically replace all images on a webpage with dogs. 
 
-It will check for pictures not populated by the extension every second, and replace them with dog pictures.
+It will then check for pictures not populated by the extension every second, and replace these with dog pictures. This should mean that images dynamically injected into the page are replaced with dogs relatively quickly.
 
 Say for example someone is searching for some nasty cades on google images. Normally, they would see something similar to this:
 
