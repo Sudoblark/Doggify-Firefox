@@ -3,7 +3,6 @@ function GetDoggoPreference() {
         var getting = browser.storage.sync.get("PreferredBreed");
         getting.then(function(result) {
             var PreferredBreedIndex = result.PreferredBreed
-            console.log(`PreferredBreed: ${PreferredBreedIndex}`)
             return resolve(PreferredBreedIndex)
         })
     })
@@ -19,7 +18,6 @@ function ReturnDoggoURL(result) {
             // otherwise construct the appropriate string and then return this
             var url = "https://dog.ceo/api/breed/" + result + "/images/random"
         }
-        console.log(`Doggo URL: ${url}`)
         return resolve(url)
     })
 }
@@ -58,7 +56,7 @@ function ReplaceImageURL(BaseURL, image) {
     })
 }
 
-function ReplaceImages(DoggoUrl) {
+function ReplaceImages() {
     // find all images on page
     var imageCollection = document.images
     var imageCollectionLength = imageCollection.length
@@ -88,6 +86,22 @@ function GetContinousDoggoSetting() {
     })
 }
 
+function CheckImage(image) {
+    try {
+        // convert to string
+        var imageString = image.src.toString()
+        // check if already doggo
+        var isDoggo = imageString.includes("https://images.dog.ceo/breeds/")
+        // return opposite as we only want to return images that are not doggos
+        return !isDoggo
+    } catch {
+        // if for whatever reason we fail then do not update the image
+        return false
+    }
+
+}
+
+
 GetContinousDoggoSetting().then(function(value) {
     var ContinousDoggos = false
     if ((value != null) && (value != false)) {
@@ -97,12 +111,26 @@ GetContinousDoggoSetting().then(function(value) {
     if (ContinousDoggos != false)  {
         console.log("continousDoggos set to TRUE")
         // First populate the url for doggos then replace all images
-        GetDoggoPreference().then(ReturnDoggoURL).then(ReplaceImages)
+        ReplaceImages()
+        // then create a timer so new images are replaced
+        window.setInterval((function() {   
+            // get htmlcollection
+            var imageCollection = document.images
+            for (let image of imageCollection) {
+                // Check if image should be replaced
+                var imageCheck = CheckImage(image)
+                if (imageCheck) {
+                // Replace src
+                GetDoggoPreference().then(ReturnDoggoURL).then(function(url) {
+                    ReplaceImageURL(url, image)})
+                }
+            }
+        }),1000)
+
     } else {
         // Otherwise do not
         console.log("continousDoggos set to FALSE")
     }
-
 })
 
 
