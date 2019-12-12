@@ -70,7 +70,7 @@ Any changes you make to existing files should update automatically on a page ref
 
 ### Extension Anatomy
 
-[beautiful-doggos](beautiful.doggos.js) is the content script injected into webpages that:
+[beautiful-doggos](beautiful-doggos.js) is the content script injected into webpages that:
 - First replaces all images with dogs if continous doggos is enabled
 - Sets up a timer to replace all non-dog images every second is continous doggos is enabled
 - Listens for requests from the background script
