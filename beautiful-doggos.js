@@ -101,7 +101,6 @@ function CheckImage(image) {
 
 }
 
-
 GetContinousDoggoSetting().then(function(value) {
     var ContinousDoggos = false
     if ((value != null) && (value != false)) {
@@ -132,7 +131,6 @@ GetContinousDoggoSetting().then(function(value) {
         console.log("continousDoggos set to FALSE")
     }
 })
-
 
 // Add listener for info passed from doggify contextmenu click
 browser.runtime.onMessage.addListener(request => {

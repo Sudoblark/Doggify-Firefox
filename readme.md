@@ -22,7 +22,9 @@ Uses the [dog-ceo-api](https://dog.ceo/dog-api/) by [ElliottLandsborough](https:
 
 ## Overview
 ### Continous Doggos
-When enabled the plugin will automatically replace all images on a webpage with dogs.
+When enabled the plugin will automatically replace all images on a webpage with dogs. 
+
+It will check for pictures not populated by the extension every second, and replace them with dog pictures.
 
 Say for example someone is searching for some nasty cades on google images. Normally, they would see something similar to this:
 
@@ -50,7 +52,7 @@ This can be accessed in firefox by going to "options > addons > extensions > dog
 Remember to "save" when you make changes to the settings menu!
 
 ## Future Plans
-- Every x seconds search the current webpage for non-doggo images and replace them, this will ensure dynamically loaded cades are replaced with doggos
+- Dynamically resize dog image 
 
 ## Setup Checklist
 
@@ -61,11 +63,25 @@ Simply add the extension in Firefox: https://addons.mozilla.org/en-GB/firefox/ad
 - Open the [about:debugging](https://developer.mozilla.org/en-US/docs/Tools/about:debugging) page in Firefox
 - Navigate to the repo and select the ```manifest.json``` file
 - Select "Inspect" to see the web console for the settings page
-- Continous doggos loads via a content script injected onto the page, so first you'll need to open a web console on that page and then refresh to see the console
 
 Note: Adding an extension via the method above only adds it for that session of Firefox; if you close then start Firefox again the Doggify extension will not be loaded.
 
-Any changes you make to existing files should update automatically on a refresh, although sometimes you'll need to close and open Firefox again.
+Any changes you make to existing files should update automatically on a page refresh, although sometimes you'll need to close and open Firefox again.
+
+### Extension Anatomy
+
+[beautiful-doggos](beautiful.doggos.js) is the content script injected into webpages that:
+- First replaces all images with dogs if continous doggos is enabled
+- Sets up a timer to replace all non-dog images every second is continous doggos is enabled
+- Listens for requests from the background script
+
+[background](background.js) is the background script, it will:
+- Create the "Doggify me!" context menu
+- Sends messages to the content script on context menu click
+
+The [icons](icons) folder contains icons for the entire extension to consumed by the manifest and context menu items
+
+The [settings](settings) folder contains [HTML](settings/settings.html)/[CSS](settings/settings.css)/[JS](settings/settings.js) relating to the settings page displayed to the user via addons > extensions > Doggify > options. It uses ```browser.storage.sync.set``` to set preferences, whilst the background script uses ``` browser.storage.sync.get``` to get these preferences.
 
 ## Compatibility
 - The iteration of images HTMLCollection is done via the following syntax:
